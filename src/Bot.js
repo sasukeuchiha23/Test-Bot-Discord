@@ -146,21 +146,23 @@ export default class Bot {
     })
   }
 
-   async sendMessage () {
-    let embed = new Discord.RichEmbed().setColor(0x00AE86)
-    let desc = '**Time until next payout**:'
+    async sendMessage() {
+    let embed = new _discord2.default.RichEmbed().setColor(0x00AE86);
+    let desc = '**Time until next payout**:';
     for (let i in this.mates) {
-      let fieldName = `${this.mates[i].time}`
-      let fieldText = ""
+      let fieldName = `${this.mates[i].time}`;
+      let fieldText = '';
       for (let j in this.mates[i].mates) {
-        const mate = this.mates[i].mates[j]
+        const mate = this.mates[i].mates[j];
         // check to see if we've already added names
-        if (fieldText.length > 0) {fieldText += "\n";}
-        fieldText += `${mate.flag} [${mate.name}](${mate.swgoh})`
+        if (fieldText.length > 0) {
+          fieldText += '\n';
+        }
+        fieldText += `${mate.flag} [${mate.name}](${mate.swgoh})`;
       }
-      embed.addField(fieldName,fieldText,true)
+      embed.addField(fieldName, fieldText, true);
     }
-    embed.setDescription(desc)
-    await this.message.edit({embed})
+    embed.setDescription(desc);
+    await this.message.edit({ embed });
   }
 }
